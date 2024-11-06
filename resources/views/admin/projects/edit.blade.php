@@ -2,6 +2,16 @@
 
 @section('content')
 
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <form action="{{route('admin.projects.update', $project)}}" method="POST">
     @csrf
     @method('PUT')
@@ -11,7 +21,7 @@
     value="{{$project->name}}">
 
     <label for="project-type" class="form-label">Type:</label>
-    <select name="type" id="project-type">
+    <select name="type_id" id="project-type">
 
         @foreach ($types as $type )
             <option value="{{$type->id}}">{{$type->name}}</option>

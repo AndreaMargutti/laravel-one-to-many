@@ -53,6 +53,7 @@ class ProjectController extends Controller
     public function update (StoreUpdateProjectRequest $request, Project $project) {
         $formData = $request->validated();
 
+        $project->type_id = $formData["type_id"];
         $project->name = $formData['name'];
         $project->members = $formData['members'];
         $project->description = $formData['description'];
