@@ -30,7 +30,7 @@ class ProjectController extends Controller
     public function store (StoreUpdateProjectRequest $request) {
         //dd($request);
 
-        $data = $request->validate();
+        $data = $request->validated();
         //dd($data);
 
         $newProject = new Project();

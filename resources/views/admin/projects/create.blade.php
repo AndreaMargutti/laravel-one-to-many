@@ -19,7 +19,7 @@
     value="{{old('name')}}">
 
     <label for="project-type" class="form-label">Type:</label>
-    <select name="type" id="project-type">
+    <select name="type_id" id="project-type">
 
         @foreach ($types as $type )
             <option value="{{$type->id}}">{{$type->name}}</option>
