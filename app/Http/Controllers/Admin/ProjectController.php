@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Type;
 use Illuminate\Http\Request;
@@ -26,13 +27,14 @@ class ProjectController extends Controller
         return view('admin.projects.create', compact('types'));
     }
 
-    public function store (Request $request) {
+    public function store (StoreUpdateProjectRequest $request) {
         //dd($request);
 
-        $data = $request;
+        $data = $request->validate();
+        //dd($data);
 
         $newProject = new Project();
-
+        $newProject->type_id = $data["type_id"];
         $newProject->name = $data['name'];
         $newProject->members = $data['members'];
         $newProject->description = $data['description'];
@@ -48,8 +50,8 @@ class ProjectController extends Controller
         return view('admin.projects.edit', compact('project', 'types'));
     }
 
-    public function update (Request $request, Project $project) {
-        $formData = $request->all();
+    public function update (StoreUpdateProjectRequest $request, Project $project) {
+        $formData = $request->validated();
 
         $project->name = $formData['name'];
         $project->members = $formData['members'];
