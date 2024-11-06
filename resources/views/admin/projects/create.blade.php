@@ -8,6 +8,15 @@
     <input type="text" id="project-name" name="name" class="form-control"
     value="{{old('name')}}">
 
+    <label for="project-type" class="form-label">Type:</label>
+    <select name="type" id="project-type">
+
+        @foreach ($types as $type )
+            <option value="{{$type->id}}">{{$type->name}}</option>
+        @endforeach
+
+    </select>
+
     <label for="project-members" class="form-label">Project Members</label>
     <input type="text" id="project-members" name="members" class="form-control"
     value="{{old('members')}}">
